@@ -1,0 +1,194 @@
+.pageContent {
+    min-height: calc(100vh - 78px);
+    padding: 100px 0;
+    background-color: var(--cor-fundo);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pageHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.pageHeader h1 {
+    font-size: var(--tamanho-fonte-titulo);
+    color: #000000;
+}
+
+.searchArea {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.searchArea input {
+    width: 380px;
+    height: 54px;
+    border: none;
+    border-radius: 12px;
+    padding: 0 18px;
+    font-size: var(--tamanho-fonte-padrao);
+    background-color: #ffffff;
+    outline: none;
+}
+
+.searchArea input::placeholder {
+    color: #8b8b8b;
+}
+
+.filterButton {
+    width: 54px;
+    height: 54px;
+    border: 2px solid #cf2929;
+    border-radius: 12px;
+    background-color: transparent;
+    color: #cf2929;
+    font-size: 26px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.tableSection {
+    margin-top: 40px;
+    overflow-x: auto;
+}
+
+.pagination {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.paginationButton,
+.paginationLink {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    font-size: 22px;
+}
+
+.paginationButton {
+    border: 1px solid #9fa3a8;
+    background-color: transparent;
+    color: #9fa3a8;
+    cursor: pointer;
+}
+
+.paginationLink {
+    font-weight: 700;
+}
+
+.paginationLink.current {
+    background-color: #ff0000;
+    color: #ffffff;
+}
+
+.searchArea input:focus,
+.filterButton:focus,
+.userIcon:focus,
+.arrowButton:focus,
+.hamburguer:focus,
+.paginationButton:focus,
+.paginationLink:focus,
+.environmentTable a:focus {
+    outline: 3px solid rgba(207, 41, 41, 0.35);
+    outline-offset: 3px;
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+@media (max-width: 1200px) {
+
+    .layout_guide {
+        width: 90%;
+    }
+
+    .menuList,
+    .userArea {
+        display: none;
+    }
+
+    .hamburguer {
+        display: block;
+    }
+
+    .pageHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    .searchArea {
+        width: 100%;
+    }
+
+    .searchArea input {
+        width: 100%;
+    }
+}
+
+
+/* ========================= */
+/* RESPONSIVIDADE MOBILE */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+    .topbar {
+        padding: 18px 0;
+        height: auto;
+    }
+
+    .layout_guide {
+        width: 92%;
+    }
+
+    .pageContent {
+        padding: 50px 0;
+    }
+
+    .pageHeader h1 {
+        font-size: 28px;
+    }
+
+    .searchArea {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .searchArea input {
+        width: 100%;
+    }
+
+    .filterButton {
+        width: 100%;
+    }
+
+    /* ========================= */
+    /* TABELA RESPONSIVA REAL */
+    /* ========================= */
+
+    .pagination {
+        margin-top: 50px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}
