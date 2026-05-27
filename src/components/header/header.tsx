@@ -2,8 +2,29 @@ import styles from './header.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faChevronDown, faSliders, faUser } from '@fortawesome/free-solid-svg-icons'
 import { faChevronCircleUp } from '@fortawesome/free-solid-svg-icons/faChevronCircleUp'
+import { useEffect, useState } from 'react'
+import { pegarToken } from '@/src/pages/api/usuarioService'
+
+interface meuTokenPayLoad{
+    email: string,
+    nome: string
+}
 
 const Header = () => {
+
+    const [usuario, setUsuario] = useState<meuTokenPayLoad | null>(null);
+
+    useEffect(() =>{
+        async function carregarDados(){
+            const dadosDoToken = await pegarToken();
+            if(dadosDoToken){
+                setUsuario(dadosDoToken);
+            }
+        }
+
+        carregarDados();
+    },[]);
+
     return(
         <>
             <header className={styles.topbar}>
@@ -29,8 +50,8 @@ const Header = () => {
                         <FontAwesomeIcon icon={faUser}/>
                     </button>
                     <div className={styles.userInfo}>
-                        <strong>Késsia Milena</strong>
-                        <span>kessia@sp.senai.br</span>
+                        <strong>{usuario?.nome || "Carregando..."}</strong>
+                        <span>{usuario?.email || "..."}</span>
                     </div>
                     <button className={styles.arrowButton} aria-label="Abrir opções da conta">
                         <FontAwesomeIcon icon={faChevronDown}/>

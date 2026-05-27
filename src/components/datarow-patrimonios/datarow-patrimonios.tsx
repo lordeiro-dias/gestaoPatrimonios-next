@@ -1,13 +1,18 @@
 import styles from './datarow-patrimonios.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightArrowLeft, faBars, faChevronDown, faCircleInfo, faSliders, faUser } from '@fortawesome/free-solid-svg-icons'
-const DataRowPatrimonios = () => {
+
+interface Patrimonio{
+    denominacao: string,
+    numeroPatrimonio: string,
+}
+
+const DataRowPatrimonios = ({denominacao, numeroPatrimonio} : Patrimonio) => {
     return(
         <>
             <tr>
-                    <td>1236808</td>
-                    <td>MESA TRAPEZOIDAL DC-1987a</td>
-                    <td>Mesa</td>
+                    <td>{numeroPatrimonio}</td>
+                    <td>{denominacao}</td>
                     <td>11/02/26</td>
                     <td>
                         <a href="#" aria-label="Ver detalhes do patrimonio">

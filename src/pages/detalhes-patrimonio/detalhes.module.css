@@ -1,1 +1,64 @@
-;
+.pageContent {
+    min-height: calc(100vh - 66px);
+    padding: 52px 0 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pageDetalhes {
+    display: flex;
+    flex-direction: column;
+}
+
+.backLink {
+    color: var(--vermelho);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 46px;
+}
+
+#tituloPatrimonio {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.patrimonioCard {
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding: 48px 80px;
+}
+
+.patrimonioContent {
+    display: grid;
+    grid-template-columns: 1.6fr 0.7fr 1.1fr 1fr 1fr;
+    gap: 46px;
+    align-items: center;
+}
+
+.patrimonioContent dt {
+    color: var(--cinza-texto);
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.patrimonioContent dd {
+    color: var(--texto);
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.patrimonioContent dl:first-child dd {
+    max-width: 230px;
+}
+
+/* HISTÓRICO */
+
+.tableSection {
+    margin-top: 40px;
+}
+
+.tableSection h2 {
+    font-size: 24px;
+    margin-bottom: 48px;
+}

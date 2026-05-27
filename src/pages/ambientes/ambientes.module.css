@@ -72,8 +72,8 @@
         width: 90%;
     }
 
-    .menu-list,
-    .user-area {
+    .menuList,
+    .userArea {
         display: none;
     }
 
@@ -81,17 +81,17 @@
         display: block;
     }
 
-    .page-header {
+    .pageHeader {
         flex-direction: column;
         align-items: flex-start;
         gap: 24px;
     }
 
-    .search-area {
+    .searchArea {
         width: 100%;
     }
 
-    .search-area input {
+    .searchArea input {
         width: 100%;
     }
 }
@@ -107,26 +107,26 @@
         width: 92%;
     }
 
-    .page-content {
+    .pageContent {
         padding: 50px 0;
     }
 
-    .page-header h1 {
+    .pageHeader h1 {
         font-size: 28px;
     }
 
-    .search-area {
+    .searchArea {
         width: 100%;
         flex-direction: column;
         align-items: stretch;
         gap: 14px;
     }
 
-    .search-area input {
+    .searchArea input {
         width: 100%;
     }
 
-    .filter-button {
+    .filterButton {
         width: 100%;
     }
 }

@@ -1,7 +1,32 @@
+import { useEffect, useState } from 'react'
 import DataRowPatrimonios from '../datarow-patrimonios/datarow-patrimonios'
 import styles from './lista-patrimonios.module.css'
+import { ListarPatrimonio } from '@/src/pages/api/patrimonioService'
+
+type Patrimonio = {
+    patrimonioID: number,
+    denominacao: string,
+    numeroPatrimonio: string
+}
 
 const ListaPatrimonios = () => {
+    
+    const[patrimonios, setPatrimonios] = useState<Patrimonio[]>([]);
+
+    async function listar(){
+        try{
+            const lista = await ListarPatrimonio();
+            setPatrimonios(lista);
+        }
+        catch(error: any){
+            console.log(error.message)
+        }
+    }
+
+    useEffect(() =>{
+        listar();
+    })
+    
     return(
         <>
         <table className={styles.environmentTable}>
@@ -9,7 +34,6 @@ const ListaPatrimonios = () => {
                     <tr>
                         <th>Patrimônio</th>
                         <th>Denominação</th>
-                        <th>Tipo</th>
                         <th>Data transfêrencia</th>
                         <th>Detalhes</th>
                         <th>Transferir</th>
@@ -17,13 +41,16 @@ const ListaPatrimonios = () => {
                 </thead>
 
                 <tbody>
-                    <DataRowPatrimonios/>                    
-                    <DataRowPatrimonios/>                    
-                    <DataRowPatrimonios/>                    
-                    <DataRowPatrimonios/>                    
-                    <DataRowPatrimonios/>                    
-                    <DataRowPatrimonios/>                    
-                    <DataRowPatrimonios/>                    
+                    {patrimonios.length > 0 ? patrimonios.map((item) => (
+                        <DataRowPatrimonios
+                            key={item.patrimonioID}
+                            denominacao={item.denominacao}
+                            numeroPatrimonio={item.numeroPatrimonio}
+                        />           
+
+                    )) : (
+                        <p>Carregando patrimonios...</p>
+                    )}
                 </tbody>
             </table>
         </>

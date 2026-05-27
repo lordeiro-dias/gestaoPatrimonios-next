@@ -1,7 +1,30 @@
 import Header from '@/src/components/header/header'
 import styles from './login.module.css'
+import { useState } from 'react'
+import { useRouter } from 'next/router';
+import { login } from '../api/authService';
 
 const Login = () => {
+
+    const [nif, setNif] = useState<string>("");
+    const [senha, setSenha] = useState<string>("");
+
+    const router = useRouter();
+
+    async function autenticar(e: React.FormEvent<HTMLFormElement>){
+        e.preventDefault();
+        try{
+            await login(nif, senha);
+            
+            setTimeout(() =>{
+                router.push("/patrimonios");
+            }, 2000);
+        }
+        catch(error: any){
+            console.log("Login inválido");
+        }
+    }
+
     return(
         <>
         <main className={styles.loginPage}>
@@ -26,7 +49,7 @@ const Login = () => {
                 </div>
             </section>
             <section className={styles.loginArea} aria-label="Formulário de login">
-                <form className={styles.loginForm}>
+                <form className={styles.loginForm} onSubmit={autenticar}>
                 <h1>Login</h1>
                 <div className={styles.formGroup}>
                     <label htmlFor="nif">NIF:</label>
@@ -35,6 +58,8 @@ const Login = () => {
                     id="nif"
                     name="nif"
                     placeholder="Insira o seu NIF"
+                    value={nif}
+                    onChange={(e) => setNif(e.target.value)}
                     required
                     />
                 </div>
@@ -46,6 +71,8 @@ const Login = () => {
                         id="senha"
                         name="senha"
                         placeholder="Insira a sua senha"
+                        value={senha}
+                        onChange={(e) => setSenha(e.target.value)}
                         required
                     />
                     <button
