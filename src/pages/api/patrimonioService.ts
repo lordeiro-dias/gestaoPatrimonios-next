@@ -8,11 +8,6 @@ interface PatrimonioListagem{
     statusPatrimonioID: number
 }
 
-interface dataTransferenciaPatrimonio{
-    dataTransferencia: string
-    patrimonioID: number
-}
-
 export async function ListarPatrimonio(){
     try{
         const response = await api.get("Patrimonio");
@@ -22,6 +17,21 @@ export async function ListarPatrimonio(){
         }))
 
         return patrimonios
+    }
+    catch(error: any){
+        throw new Error(error.response.data);
+    }
+}
+
+export async function ListarPorId(id: string){
+    try{
+        const response = await api.get("Patrimonio/" + id);
+        
+        const patrimonios = {
+            ...response.data
+        };
+
+        return patrimonios;
     }
     catch(error: any){
         throw new Error(error.response.data);

@@ -3,8 +3,46 @@ import styles from './detalhes.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRightArrowLeft, faBars, faChevronDown, faCircleInfo, faSliders, faUser } from '@fortawesome/free-solid-svg-icons'
 import ListaHistorico from '@/src/components/lista-historico/lista-historico'
+import { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
+import { ListarPorId } from '../../api/patrimonioService'
+
+type Patrimonio = {
+    patrimonioID: number,
+    denominacao: string,
+    numeroPatrimonio: string,
+    statusPatrimonioID: number,
+    statusPatrimonio: string, 
+    localNome: string
+}
 
 const DetalhesPatrimonio = () => {
+
+    const [patrimonio, setPatrimonio] = useState<Patrimonio>();
+
+    const params = useParams();
+
+    const id = params?.id;
+
+    async function listagemPatrimonio(){
+        try{
+            const response = await ListarPorId(String(id));
+            console.log(response);
+            setPatrimonio(response);
+        }
+        catch(error: any){
+            console.log(error.message);
+        }
+    }
+
+    useEffect(() =>{
+        if(!id) return;
+
+        setTimeout(() =>{
+            listagemPatrimonio();
+        }, 1000)
+    }, [id])
+
     return(
         <>
             <Header/>
@@ -17,12 +55,12 @@ const DetalhesPatrimonio = () => {
                         <FontAwesomeIcon icon={faArrowLeft}/>
                         Voltar
                     </a>
-                    <h1 id={styles.tituloPatrimonio}>Patrimônio: 1236808</h1>
+                    <h1 id={styles.tituloPatrimonio}>Patrimônio: {patrimonio?.numeroPatrimonio}</h1>
                     <article className={styles.patrimonioCard}>
                         <div className={styles.patrimonioContent}>
                         <dl>
                             <dt>Denominação</dt>
-                            <dd>NOTEBOOK ALTO DESEMPENHO P/ GAMER</dd>
+                            <dd>{patrimonio?.denominacao}</dd>
                         </dl>
                         <dl>
                             <dt>Tipo</dt>
@@ -36,11 +74,11 @@ const DetalhesPatrimonio = () => {
                         </dl>
                         <dl>
                             <dt>Local Atual</dt>
-                            <dd>Sala 09/10</dd>
+                            <dd>{patrimonio?.localNome}</dd>
                         </dl>
                         <dl>
                             <dt>Status Atual</dt>
-                            <dd>Ativo</dd>
+                            <dd>{patrimonio?.statusPatrimonio}</dd>
                         </dl>
                         </div>
                     </article>

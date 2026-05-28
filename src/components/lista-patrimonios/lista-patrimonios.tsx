@@ -44,12 +44,15 @@ const ListaPatrimonios = () => {
                     {patrimonios.length > 0 ? patrimonios.map((item) => (
                         <DataRowPatrimonios
                             key={item.patrimonioID}
+                            patrimonioID={item.patrimonioID}
                             denominacao={item.denominacao}
                             numeroPatrimonio={item.numeroPatrimonio}
                         />           
 
                     )) : (
-                        <p>Carregando patrimonios...</p>
+                        <tr>
+                            <th>Carregado patrimônios...</th>
+                        </tr>
                     )}
                 </tbody>
             </table>
