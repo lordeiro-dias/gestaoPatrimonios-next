@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import DataRowPatrimonios from '../datarow-patrimonios/datarow-patrimonios'
 import styles from './lista-patrimonios.module.css'
 import { ListarPatrimonio } from '@/src/pages/api/patrimonioService'
+import Pagination from '../pagination/pagination'
 
 type Patrimonio = {
     patrimonioID: number,
@@ -12,6 +13,8 @@ type Patrimonio = {
 const ListaPatrimonios = () => {
     
     const[patrimonios, setPatrimonios] = useState<Patrimonio[]>([]);
+    const[paginaAtual, setPaginaAtual] = useState(1);
+    const[postPorPagina, setPostPorPagina] = useState(20);
 
     async function listar(){
         try{
@@ -25,7 +28,11 @@ const ListaPatrimonios = () => {
 
     useEffect(() =>{
         listar();
-    })
+    }, []);
+
+    const ultimoPostIndex = paginaAtual * postPorPagina;
+    const primeiroPostIndex = ultimoPostIndex - postPorPagina;
+    const postAtual = patrimonios.slice(primeiroPostIndex, ultimoPostIndex);
     
     return(
         <>
@@ -33,15 +40,14 @@ const ListaPatrimonios = () => {
                 <thead>
                     <tr>
                         <th>Patrimônio</th>
-                        <th>Denominação</th>
-                        <th>Data transfêrencia</th>
+                        <th>Denominação</th>    
                         <th>Detalhes</th>
                         <th>Transferir</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {patrimonios.length > 0 ? patrimonios.map((item) => (
+                    {postAtual.length > 0 ? postAtual.map((item) => (
                         <DataRowPatrimonios
                             key={item.patrimonioID}
                             patrimonioID={item.patrimonioID}
@@ -56,6 +62,12 @@ const ListaPatrimonios = () => {
                     )}
                 </tbody>
             </table>
+            <Pagination
+                totalPosts={patrimonios.length}
+                postsPorPagina={postPorPagina}
+                paginaAtual={paginaAtual}
+                setPaginaAtual={setPaginaAtual}
+            />
         </>
     )
 }

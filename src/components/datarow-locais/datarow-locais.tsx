@@ -2,7 +2,14 @@ import styles from './datarow-locais.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightArrowLeft, faBars, faChevronDown, faCircleInfo, faSliders, faUser } from '@fortawesome/free-solid-svg-icons'
 
-const DataRowLocais = () => {
+interface Localizacoes{
+    localizacaoID: number,
+    nomeLocal: string,
+    areaID: number,
+    nomeArea: string
+}
+
+const DataRowLocais = ({localizacaoID, nomeLocal, areaID, nomeArea} : Localizacoes) => {
     return(
         <>
         <tr>

@@ -15,7 +15,6 @@ const DataRowPatrimonios = ({denominacao, numeroPatrimonio, patrimonioID} : Patr
             <tr>
                     <td>{numeroPatrimonio}</td>
                     <td>{denominacao}</td>
-                    <td>11/02/26</td>
                     <td>
                         <Link href={"/detalhes-patrimonio/" + patrimonioID}>
                             <FontAwesomeIcon icon={faCircleInfo}/>

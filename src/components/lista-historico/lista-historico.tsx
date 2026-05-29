@@ -17,8 +17,6 @@ const ListaHistorico = () => {
                 </thead>
                 <tbody>
                     <DataRowHistorico/>
-                    <DataRowHistorico/>
-                    <DataRowHistorico/>
                 </tbody>
             </table>
         </>

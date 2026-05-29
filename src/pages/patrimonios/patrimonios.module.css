@@ -58,40 +58,6 @@
     overflow-x: auto;
 }
 
-.pagination {
-    margin-top: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    flex-wrap: wrap;
-}
-
-.paginationButton,
-.paginationLink {
-    width: 46px;
-    height: 46px;
-    display: grid;
-    place-items: center;
-    border-radius: 8px;
-    font-size: 22px;
-}
-
-.paginationButton {
-    border: 1px solid #9fa3a8;
-    background-color: transparent;
-    color: #9fa3a8;
-    cursor: pointer;
-}
-
-.paginationLink {
-    font-weight: 700;
-}
-
-.paginationLink.current {
-    background-color: #ff0000;
-    color: #ffffff;
-}
 
 .searchArea input:focus,
 .filterButton:focus,
